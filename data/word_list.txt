@@ -8,9 +8,9 @@
 那	na4	that	determiner
 大	da4	big	AJ
 小	xiao3	small	AJ
-很	hen3	very	stative-assertion
-非常	fei1chang2	extraordinarily
 不	bu4	not	stative-assertion
+很	hen3	very	stative-assertion
+非常	fei1chang2	extraordinarily	stative-assertion
 吗	ma	?
 连	lian2	even
 也	ye3	also
@@ -27,8 +27,9 @@
 老师	lao3shi1	teacher	profession
 学生	xue2sheng1	student	profession
 校长	xiao4zhang3	headmaster	profession
-会计	kuai4ji4	accountant	profession
 医生	yi1sheng1	doctor	profession
+会计	kuai4ji4	accountant	profession
+科学家	ke1xue2jia1	scientist	profession
 日本	ri4ben3	Japan	N	country
 法国	fa3guo2	France	N	country
 德国	de2guo2	Germany	N	country
