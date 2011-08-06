@@ -3,7 +3,7 @@
 您	nin2	you (polite)	PN
 他	ta1	he	PN
 她	ta1	she	PN
-它	ta1	it	PN
+它	ta1	it
 这	zhe3	this	determiner
 那	na4	that	determiner
 大	da4	big	AJ

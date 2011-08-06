@@ -22,8 +22,8 @@ class Pattern(object):
 
     def generateSentence(self):
         choices = [random.choice(word) for word in self.options]
-
-        english = [word.startswith('#') and choices[int(word[1:])] or word for word in self.english]
+        pinyin  = [word.startswith('#') and word_dict[choices[int(word[1:])]].pinyin or word_dict[word].pinyin for word in self.chinese]
+        english = [word.startswith('#') and word_dict[choices[int(word[1:])]].meaning or word for word in self.english]
         
         # Correct an/a
         for i, word in enumerate(english[:-1]):
@@ -37,7 +37,6 @@ class Pattern(object):
         english[0] = english[0].capitalize()
         print " ".join(english)
 
-        pinyin = [word.startswith('#') and all_words[choices[int(word[1:])]].pinyin or all_words[word].pinyin for word in self.chinese]
         print " ".join(pinyin)
         
         # Choose correct irregular verb - could do earlier
@@ -52,8 +51,18 @@ class Word(object):
         else:
             self.tags = []
 
+class Hanzi(object):
+    def __init__(self, pinyin, meaning, tags=None):
+        self.pinyin = pinyin
+        self.meaning = meaning
+        self.tags = []
+
+    def addTags(self, tags):
+        self.tags.extend(tags)
+        
 def getWordsFromList(filename):
-    """ Read tab-delimited file in format hanzi/pinyin/meaning/tags and create dictionary of words. """
+    """ Read tab-delimited file in format hanzi/pinyin/meaning/tags
+        and create dictionary of words with hanzi as keys. """
     
     try:
         fin = open(filename)
@@ -61,16 +70,17 @@ def getWordsFromList(filename):
         print "Could not open word list %s" % filename
         return
     
-    all_words = {}
+    word_dict = {}
     
     for line in fin:
         word = line.strip('\n').split('\t')
+        new_word = Hanzi(word[1], word[2])
+        word_dict[word[0]] = new_word
+        
         if len(word) > 3:
-            all_words[word[2]] = Word(word[0], word[1], word[3:])
-        elif len(word) > 2:
-            all_words[word[2]] = Word(word[0], word[1])
+            new_word.addTags(word[3:])
 
-    return all_words
+    return word_dict
 
 def getPatternsFromFile(filename):
     try:
@@ -100,8 +110,8 @@ def splitWordsIntoCategories(word_dict):
     
     return categories
 
-all_words = getWordsFromList(os.path.join('data', 'word_list.txt'))
-categories = splitWordsIntoCategories(all_words)
+word_dict = getWordsFromList(os.path.join('data', 'word_list.txt'))
+categories = splitWordsIntoCategories(word_dict)
 patterns = getPatternsFromFile(os.path.join('data', 'patterns.txt'))
 
 random_pattern = random.choice(patterns)
