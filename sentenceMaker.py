@@ -18,7 +18,13 @@ class Pattern(object):
     def __init__(self, english, chinese, options):
         self.english = english.rstrip().split(' ')
         self.chinese = chinese.rstrip().split(' ')
-        self.options = [categories[option] for option in options.split('\t')]
+        
+        self.options = []
+        for option in options.split('\t'):
+            all_options = []
+            for sub_option in option.split('/'):
+                all_options.extend(categories[sub_option])
+            self.options.append(all_options)
 
     def generateSentence(self):
         choices = [random.choice(word) for word in self.options]
@@ -30,7 +36,7 @@ class Pattern(object):
             if word == 'a' and english[i+1].startswith(vowels):
                 english[i] = 'an'
             elif '%' in word:
-                pronoun =choices[int(word.split('%')[1])]
+                pronoun = word_dict[choices[int(word.split('%')[1])]].meaning
                 verb = to_be.get(pronoun, 'is')
                 english[i] = verb
             
