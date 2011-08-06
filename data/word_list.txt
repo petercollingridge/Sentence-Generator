@@ -16,7 +16,6 @@
 也	ye3	also
 喜欢	xi3huan	like	V
 是	shi4	is	assertion
-不是	bu2shi4	is/am/are not	assertion
 报	bao4	newspaper	object
 纸	zhi3	paper	object
 书	shu1	book	object
@@ -39,3 +38,14 @@
 意大利	yi4da4li4	Italy	N	country
 西班牙	xi1ban1ya2	Spain	N	country
 伊拉克	yi1la1ke4	Iraq	N	country
+俄罗斯	e2luo2si1	Russia person	N	country
+日本人	ri4ben3ren2	Japanese person	N	nationality
+法国人	fa3guo2ren2	French person	N	nationality
+德国人	de2guo2ren2	German person	N	nationality
+美国人	mei3guo2ren2	American person	N	nationality
+英国人	ying1guo2ren2	English person	N	nationality
+中国人	zhong1guo2ren2	Chinese person	N	nationality
+意大利人	yi4da4li4ren2	Italian person	N	nationality
+西班牙人	xi1ban1ya2ren2	Spanish person	N	nationality
+伊拉克人	yi1la1ke4ren2	Iraqi person	N	nationality
+俄罗斯人	e2luo2si1ren2	Russian person	N	nationality
