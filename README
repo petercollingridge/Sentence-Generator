@@ -1,0 +1,27 @@
+Sentence maker makes a random English sentence based on a sentence pattern defined in data/patterns.txt.
+
+---Patterns---
+Describing a country.				中国很大。
+Asking about a country.				中国大吗？
+Describing a person's profession.	他是老师。
+Asking about a person's profession.	他是老师吗？
+
+
+---Pattern Definitions---
+Patterns in patterns.txt are defined in the form:
+
+[English] <tab> [Chinese] <tab> [options...]
+
+[English] is a sequence of words separated by spaces.
+#n
+- where n is an integer means that word will be chosen from the nth option list
+is%n
+ - where n is an integer replaces the verb 'is' with the correct form based on the pronoun that should be defined by option n
+
+[Chinese] is a sequence of words separated by spaces.
+Words are in English and looked up in the dictionary defined in words_with_tags.txt (so must exist there)
+#n
+- where n is an integer means that word will be chosen from the nth option list
+
+[options] is a tab-delimited list of category names.
+These names must be a tag of at least one word in words_with_tags.txt
