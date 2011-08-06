@@ -16,9 +16,9 @@ possesive = {'I': 'mine', 'he': 'his', 'she': 'hers', 'you': 'yours'}
 
 class Pattern(object):
     def __init__(self, english, chinese, options):
-        self.english = english.split(' ')
-        self.chinese = chinese.split(' ')
-        self.options = [categories[option] for option in options]
+        self.english = english.rstrip().split(' ')
+        self.chinese = chinese.rstrip().split(' ')
+        self.options = [categories[option] for option in options.split('\t')]
 
     def generateSentence(self):
         choices = [random.choice(word) for word in self.options]
@@ -92,8 +92,8 @@ def getPatternsFromFile(filename):
     patterns = []
     
     for line in fin:
-        temp = line.rstrip().split('\t')
-        patterns.append(Pattern(english=temp[0], chinese=temp[1], options=temp[2:]))
+        temp = line.rstrip().split('|')
+        patterns.append(Pattern(english=temp[0], chinese=temp[1], options=temp[2]))
 
     return patterns
 
