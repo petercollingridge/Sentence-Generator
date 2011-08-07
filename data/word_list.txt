@@ -4,16 +4,18 @@
 他	ta1	he	PN
 她	ta1	she	PN
 它	ta1	it
+的	de	possessive
 这	zhe3	this	determiner
 那	na4	that	determiner
-大	da4	big	AJ
-小	xiao3	small	AJ
+吗	ma	?
 不	bu4	not	stative-assertion
 很	hen3	very	stative-assertion
 非常	fei1chang2	extraordinarily	stative-assertion
-吗	ma	?
 连	lian2	even
 也	ye3	also
+不再	bu2zai4	not... anymore
+大	da4	big	AJ
+小	xiao3	small	AJ
 喜欢	xi3huan	like	V
 是	shi4	is	assertion
 报	bao4	newspaper	object
@@ -23,9 +25,11 @@
 杂志	za2zhi4	magazine	object
 铅笔	qian1bi3	pencil	object
 钢笔	gang1bi3	pen	object
+桌子	zhuo1zi	table	object
 老师	lao3shi1	teacher	profession
 学生	xue2sheng1	student	profession
 校长	xiao4zhang3	headmaster	profession
+士兵	shi4bing1	solider	profession
 医生	yi1sheng1	doctor	profession
 会计	kuai4ji4	accountant	profession
 科学家	ke1xue2jia1	scientist	profession
@@ -38,7 +42,7 @@
 意大利	yi4da4li4	Italy	N	country
 西班牙	xi1ban1ya2	Spain	N	country
 伊拉克	yi1la1ke4	Iraq	N	country
-俄罗斯	e2luo2si1	Russia person	N	country
+俄罗斯	e2luo2si1	Russia 	N	country
 日本人	ri4ben3ren2	Japanese person	N	nationality
 法国人	fa3guo2ren2	French person	N	nationality
 德国人	de2guo2ren2	German person	N	nationality

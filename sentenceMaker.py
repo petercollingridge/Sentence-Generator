@@ -1,23 +1,23 @@
 import os
 import random
 
-# Add final punctuation
 # Verb endings likes, does etc.
+# Associate verbs with relevant nouns
+# Add punctuation
 # BUG: "Is this *a* paper"
-# Possesives
+# Slot possesives into other sentences
+# Plurals
 # Add yizhi - always
 # Add optional options e.g. negation, also
 # Catch errors if categories not defined
-# Associate verbs with relevant nouns
 
 vowels = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
 
 irregularities = {
-    'is': {'I': 'am', 'you': 'are', 'you (polite)': 'are'},
-    'PN': {'I': 'me', 'he': 'him', 'she': 'her', 'you': 'you', 'you (polite)': 'you (polite)'}
+    'is': {'I': 'am', 'you': 'are',  'you (polite)': 'are'},
+    'PN': {'I': 'me', 'you': 'you',  'you (polite)': 'you (polite)',  'he': 'him', 'she': 'her'},
+    'my': {'I': 'my', 'you': 'your', 'you (polite)': 'your (polite)', 'he': 'his', 'she': 'her'}
 }
-do = {'I': 'do', 'you': 'do'}
-possesive = {'I': 'mine', 'he': 'his', 'she': 'hers', 'you': 'yours'}
 
 class Pattern(object):
     def __init__(self, english, chinese, options):
@@ -44,7 +44,7 @@ class Pattern(object):
                 irreg_type, determiner = word.split('%')
                 irreg_dict = irregularities[irreg_type]
                 determiner = word_dict[choices[int(determiner)]].meaning
-                english[i] = irreg_dict.get(determiner, determiner)
+                english[i] = irreg_dict.get(determiner, irreg_type)
             
         english[0] = english[0].capitalize()
 
