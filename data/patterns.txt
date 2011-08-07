@@ -1,6 +1,7 @@
-#0 is #1 #2		|#0 #1 #2		|country	stative-assertion	AJ
-is #0 #1		|#0 #1 吗		|country	AJ
-#0 is%0 a #1	|#0 是 #1		|PN	profession/nationality
-is%0 #0 a #2	|#0 #1 #2 吗		|PN	assertion	profession/nationality
-even #0 #1 #2	|连 #0 也 #1 #2	|PN	V	PN
-is #0 a #1		|#0 是 #1 吗		|determiner	object
+#0 is #1 #2			|#0 #1 #2		|country	stative-assertion	AJ
+is #0 #1			|#0 #1 吗		|country	AJ
+#0 is%0 a #1		|#0 是 #1		|PN	profession/nationality
+is%0 #0 a #2		|#0 #1 #2 吗		|PN	assertion	profession/nationality
+even #0 #1 PN%2		|连 #0 也 #1 #2	|PN	V	PN
+is #0 a #1			|#0 是 #1 吗		|determiner	object
+#0 do not #1 PN%2 anymore	|#0 不再 #1 #2	|PN	V	PN

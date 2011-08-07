@@ -1,19 +1,22 @@
 import os
 import random
 
-# Fix subject pronouns I->me, he->him 
 # Add final punctuation
+# Verb endings likes, does etc.
+# BUG: "Is this *a* paper"
 # Possesives
-# Add buzai - not ... anymore
 # Add yizhi - always
 # Add optional options e.g. negation, also
 # Catch errors if categories not defined
 # Associate verbs with relevant nouns
 
 vowels = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
-to_be = {'I': 'am', 'you': 'are', 'you (polite)': 'are'}
+
+irregularities = {
+    'is': {'I': 'am', 'you': 'are', 'you (polite)': 'are'},
+    'PN': {'I': 'me', 'he': 'him', 'she': 'her', 'you': 'you', 'you (polite)': 'you (polite)'}
+}
 do = {'I': 'do', 'you': 'do'}
-pronoun_subj_obj = {'I': 'me', 'he': 'him', 'she': 'her'}
 possesive = {'I': 'mine', 'he': 'his', 'she': 'hers', 'you': 'yours'}
 
 class Pattern(object):
@@ -34,13 +37,14 @@ class Pattern(object):
         english = [word.startswith('#') and word_dict[choices[int(word[1:])]].meaning or word for word in self.english]
         
         # Correct an/a
-        for i, word in enumerate(english[:-1]):
-            if word == 'a' and english[i+1].startswith(vowels):
+        for i, word in enumerate(english):
+            if word == 'a' and i != len(english)-1 and english[i+1].startswith(vowels):
                 english[i] = 'an'
             elif '%' in word:
-                pronoun = word_dict[choices[int(word.split('%')[1])]].meaning
-                verb = to_be.get(pronoun, 'is')
-                english[i] = verb
+                irreg_type, determiner = word.split('%')
+                irreg_dict = irregularities[irreg_type]
+                determiner = word_dict[choices[int(determiner)]].meaning
+                english[i] = irreg_dict.get(determiner, determiner)
             
         english[0] = english[0].capitalize()
 
@@ -121,5 +125,7 @@ categories = splitWordsIntoCategories(word_dict)
 if __name__ == '__main__':
     patterns = getPatternsFromFile(os.path.join('data', 'patterns.txt'))
     random_pattern = random.choice(patterns)
-    random_pattern.generateSentence()
+    english, chinese = random_pattern.generateSentence()
 
+    print ' '.join(english)
+    print ' '.join([word.pinyin for word in chinese])
