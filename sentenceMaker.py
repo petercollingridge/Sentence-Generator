@@ -1,16 +1,18 @@
 import os
 import random
 
+# Fix subject pronouns I->me, he->him 
+# Add final punctuation
 # Possesives
-# Add optional options e.g. negation
-# Fix I->me, he->him 
-# Fix space before punctuation
+# Add buzai - not ... anymore
+# Add yizhi - always
+# Add optional options e.g. negation, also
 # Catch errors if categories not defined
-# Improve how Chinese words are defined in pattern: dict[hani] = word
-# How to associate verbs with relevant nouns
+# Associate verbs with relevant nouns
 
 vowels = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
 to_be = {'I': 'am', 'you': 'are', 'you (polite)': 'are'}
+do = {'I': 'do', 'you': 'do'}
 pronoun_subj_obj = {'I': 'me', 'he': 'him', 'she': 'her'}
 possesive = {'I': 'mine', 'he': 'his', 'she': 'hers', 'you': 'yours'}
 
@@ -28,7 +30,7 @@ class Pattern(object):
 
     def generateSentence(self):
         choices = [random.choice(word) for word in self.options]
-        pinyin  = [word.startswith('#') and word_dict[choices[int(word[1:])]].pinyin or word_dict[word].pinyin for word in self.chinese]
+        chinese = [word.startswith('#') and word_dict[choices[int(word[1:])]] or word_dict[word] for word in self.chinese]
         english = [word.startswith('#') and word_dict[choices[int(word[1:])]].meaning or word for word in self.english]
         
         # Correct an/a
@@ -41,11 +43,8 @@ class Pattern(object):
                 english[i] = verb
             
         english[0] = english[0].capitalize()
-        print " ".join(english)
 
-        print " ".join(pinyin)
-        
-        # Choose correct irregular verb - could do earlier
+        return (english, chinese)
 
 class Word(object):
     def __init__(self, hanzi, pinyin, tags=None):
@@ -118,8 +117,9 @@ def splitWordsIntoCategories(word_dict):
 
 word_dict = getWordsFromList(os.path.join('data', 'word_list.txt'))
 categories = splitWordsIntoCategories(word_dict)
-patterns = getPatternsFromFile(os.path.join('data', 'patterns.txt'))
 
-random_pattern = random.choice(patterns)
-random_pattern.generateSentence()
+if __name__ == '__main__':
+    patterns = getPatternsFromFile(os.path.join('data', 'patterns.txt'))
+    random_pattern = random.choice(patterns)
+    random_pattern.generateSentence()
 
